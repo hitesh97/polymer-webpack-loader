@@ -1,0 +1,63 @@
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="lhs-menu">
+  <template>
+      <style>
+        .today {
+          color : red;
+          font-size: 16px;
+        }
+      </style>
+
+      <iron-ajax auto Id="headerAjaxElement" handle-as="json" on-response="handleResponse" debounce-duration="1000"></iron-ajax>
+      <h1>I am child element with <span class="today">{{today}}</span>!</h1>
+      <p>Iron Ajax API CALL Result : {{userName}}</p>
+
+  </template>
+  <script>
+
+    import Rx from 'rxjs/Rx';
+
+    class LhsMenu extends Polymer.Element {
+      static get is() { return 'lhs-menu'; }
+      static get properties() {
+        return {
+          today: {
+            type: String,
+            value: ''
+          }
+        }
+      }
+      ready () {
+        super.ready();
+        console.log('Child ready !!');
+
+        this.updateRxClock();
+        this.makeAPIRequest();
+
+      }
+
+      makeAPIRequest() {
+        //this.$.headerAjaxElement.url = Configuration.getMenuEndpoint(Environment.CurrEnvironment);
+        this.$.headerAjaxElement.url = "https://api.github.com/users/hitesh97";
+      }
+
+      handleResponse(data) {
+        console.log("data from API !!");
+        console.log(data.detail.response);
+        this.userName = data.detail.response.login;
+      }
+
+      updateRxClock() {
+
+        const source = Rx.Observable.interval(1000);
+        const subscribe = source.subscribe(val => {
+          this.today = new Date().toLocaleString()
+        });
+
+      }
+    }
+
+    window.customElements.define(LhsMenu.is, LhsMenu);
+  </script>
+</dom-module>
