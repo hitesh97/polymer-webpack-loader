@@ -1,0 +1,33 @@
+# OS generated files #
+.DS_Store
+
+# Node
+/node_modules/
+npm-debug.log
+debug.log
+
+# Build
+/aot/
+/dll/
+
+# Coverage
+/coverage/
+
+# Reports
+/reports/
+
+# Dist
+/dist/
+
+# Docs
+/docs/
+
+# IDE files
+.vscode/
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Bower_Components
+/bower_components/

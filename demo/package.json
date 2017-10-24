@@ -3,21 +3,30 @@
   "version": "1.0.0",
   "description": "A hello world example of polymer-webpack-loader.",
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "build": "webpack"
+    "start": "npm-run-all --parallel server:api server:dev",
+    "server:api": "node e2e/server/index.js",
+    "server:dev": "webpack-dev-server --config config/webpack.dev.js --open --progress --profile --watch",
+    "server": "node e2e/server/index.js",
+    "build": "webpack",
+    "build:dev": "npm run clean:build && webpack --config config/webpack.dev.js --progress --profile",
+    "clean:build": "rimraf -- dist"
   },
   "author": "Rob Dodson",
   "license": "Apache-2.0",
   "devDependencies": {
+    "autoprefixer": "^7.1.6",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.6.0",
     "copy-webpack-plugin": "^4.0.1",
     "date-fns": "^1.28.5",
+    "express": "^4.16.2",
     "html-webpack-plugin": "^2.29.0",
+    "npm-run-all": "^4.1.1",
     "polymer-webpack-loader": "^2.0.0",
     "rxjs": "^5.4.3",
     "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.5.0"
+    "webpack-dev-server": "^2.5.0",
+    "webpack-merge": "^4.1.0"
   }
 }

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Hello World</title>
+    <title>Experian portal header</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
@@ -23,7 +23,7 @@
       </script>
       <script type="text/javascript" src="bower_components/webcomponentsjs/custom-elements-es5-adapter.js"></script>
     </div>
-    
+
     <!--
       Use the webcomponents-loader script which will feature detect which Web
       Components features are missing and lazy load the appropriate polyfills.
@@ -40,6 +40,12 @@
           refScript.parentNode.insertBefore(script, refScript);
         }, false);
       })();
+    </script>
+    <script>
+      // Force all polyfills on
+      if (window.customElements) window.customElements.forcePolyfill = true;
+      ShadyDOM = { force: true };
+      ShadyCSS = { shimcssproperties: true};
     </script>
     <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
